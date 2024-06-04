@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP2</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <!--Lien vers les polices de GoogleFonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Ephesis&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="global">
+        <header>
+            <div id="icone_entete">
+                <!--La barre de recherche de la page-->
+                <form id="recherche_desktop">
+                    <input type="text" placeholder="Recherche" width="100px" height="50px">
+                    <img src="https://s2.svgbox.net/materialui.svg?ic=search&color=000" width="32" height="32">
+                </form>
+
+                <!--Icone de recherche sur mobile-->
+                <img id="recherche_mobile" src="https://s2.svgbox.net/materialui.svg?ic=search&color=f8e8ca" width="32" height="32">
+
+                <!--Icone pour la connection-->
+                <img id="connexion" src="https://s2.svgbox.net/hero-outline.svg?ic=user-circle&color=f8e8ca" width="32" height="32">
+            </div>
+
+            <div id="titre_logo">
+                <!--Titre de la page-->
+                <h1>Félin Royal</h1>
+                <img src="images/logo-chat.png" alt="logo_felin_royal">
+            </div>
+
+            <div id="les_menus">
+                <!-- le input pour le checkbox, ce qui servira à faire fonctionner le menu burger-->
+                <input type="checkbox" id="maCheckbox" aria-label="le menu">
+            
+                <!-- le label est ce qui est relié au checkbox. Dans le cas présent, il comporte les traits qui servent à faire le menu burger -->
+                <label for="maCheckbox" id="label_checkbox">
+                    <div class="trait"></div>
+                    <div class="trait"></div>
+                    <div class="trait"></div>
+                </label>
+
+                <!--Le menu sur mobile-->
+                <nav id="menu_mobile">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#competition">Compétition</a>
+                    <a href="#race_chat">Races de chat</a>
+                    <a href="#candidature">Candidature</a>
+                </nav>
+
+                <!--Le menu sur desktop-->
+                <nav id="menu_desktop">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#competition">Compétition</a>
+                    <a href="#race_chat">Races de chat</a>
+                    <a href="#candidature">Candidature</a>
+                </nav> 
+            </div>
+        </header>
+
+
+        <main>
+            <!--SECTION D'ACCUEIL---------------------------------------------------------------->
+            <article id="accueil" class="styleSectionMain">
+                <div id="degrade"><p>Qui sera le <span>PLUS BEAU</span> chat?</p></div> <!--J'utilise des spans pour pouvoir cibler des mots bien précis dans mes textes et les styliser-->     
+                <p id="para_accueil">Bienvenue sur Le Félin Royal, la compétition de beauté de chat incontournable depuis 1992 au Québec ! Chaque année, les plus beaux félins de la province se réunissent pour concourir et tenter de remporter le titre tant convoité de "Roi" ou "Reine" de la compétition. Que vous soyez passionné par les chats ou simplement curieux de découvrir ces magnifiques animaux, venez assister à un spectacle époustouflant de grâce et d'élégance. Rejoignez-nous dès maintenant pour suivre toutes nos actualités et ne manquer aucune information sur nos prochains événements.</p>     
+            </article>
+
+            <!--ASIDE POUR LES COMMANDITAIRES----------------------------------------------------->
+            <aside id="aside_commandite">
+                <h5>Nos commanditaires</h5>
+                <div id="defilement_commandite">
+                    <img src="images/commandite1.png" alt="">
+                    <img src="images/commandite2.png" alt="">
+                    <img src="images/commandite4.png" alt="">
+                    <img src="images/commandite5.png" alt="">
+                </div>
+            </aside>
+
+            <!--SECTION LES RÉSULTATS DE COMPÉTITION 2024 (FÉLIXA)-------------------------------->
+            <article id="competition" class="styleSectionMain">
+                <h2>Résultat du Félin Royal 2024</h2>
+                <h3>Félicitation à Félixa et sa maîtresse Nesrine !</h3>
+                <div id="chat_competition">                 
+                    <figure id="caroussel_chat">
+                        <img id="img_chat" src="" alt=""> <!--Animation-->
+                        <figcaption>Photographe: Samy Bercalis</figcaption>
+                        <button id="boutonFelixa">Démarrer/Arrêter le diaporama</button> <!--Bouton pour l'animation-->
+                    </figure>                
+
+                    <div id="informations_chat">
+                        <h4>Félixa</h4>
+                        <div id="data_complet">
+                            <p id="data_race">Race: Somali</p>
+                            <p id="data_sexe">Sexe: Femelle</p>
+                            <p id="data_age">Âge: 2 ans</p>                              
+                        </div>
+                        <p>Félicitations à Nesrine et à Félixa pour leur magnifique victoire au concours de beauté félin, le Félin Royal ! C'est un duo irrésistible qui a su conquérir les cœurs des juges et ravir le titre si prestigieux de cette édition 2024. 
+                            Félixa s'est démarquée comme la Reine des chats avec sa grâce et sa beauté naturelle qui ont su séduire tous ceux qui ont croisé son chemin. Et Nesrine, votre complicité et votre dévouement envers Félixa n'ont fait que mettre en lumière son charme exceptionnel.
+                            Félicitations à vous deux, champions incontestés du Félin Royal 2024 !</p>                      
+                    </div> 
+                </div>
+            </article>
+
+            <!--ASIDE POUR LA PUBLICITÉ---------------------------------------------------------->
+            <aside id="aside_pub">
+                <h5>Publicités</h5>
+                <div id="pub_Chat"><!--Balise de l'animation-->
+                    <button id="bouton_pub">Démarrer/Arrêter la publicité</button> <!--Bouton pour l'animation-->
+                </div>
+            </aside>
+
+            <!--SECTION SUR LE CHAT DU JOUR (ANGORA)--------------------------------------------->
+            <article id="race_chat" class="styleSectionMain">
+                <h2>La race de chat du jour</h2>
+                <div id="contenu_angora">                        
+                    <h3>L'Angora turc</h3> 
+                    <div id="texte_photo_angora">
+                        <p>L’Angora turc est élégant à regarder. Son poil mi-long à long possède en plus un avantage par rapport aux autres races présentant cette caractéristique : un sous-poil très léger, ce qui facilite énormément son brossage et donc son entretien. L’Angora turc est très facile à vivre. Il s'éduque aisément. Il aime la présence de son propriétaire, auquel il est très attaché. Agile, souple, il est également assez sportif. Il aime jouer avec les enfants, et la compagnie de congénères ou de chiens ne le dérange pas. À noter qu’il aime particulièrement l’eau et qu’il n’hésitera pas à se plonger dans un évier ou une baignoire.</p>
+                        <section>
+                            <img id="imageAngora" src="" alt=""> <!--Animation-->
+                            <button id="bouton_Angora">Démarrer/Arrêter l'animation</button> <!--Bouton pour l'animation-->                            
+                        </section>                   
+                    </div>           
+                </div>
+            </article>
+
+            <!--FORMULAIRE D'INSCRIPTION---------------------------------------------------------------->
+            <div id="section_formulaire" class="styleSectionMain">
+                <form id="candidature">
+                    <h2>Inscription au concours du Félin Royal 2025</h2>
+                    <h3>Alors, est-ce que votre chat est une <span>star</span> ?</h3>
+                    
+                    <section id="les_input">
+                        <!--Nom du chat-->
+                        <div class="form__text">
+                            <label for="input__nom_chat">Nom de votre chat</label>
+                            <input type="text" id="input__nom_chat" placeholder="Exemple: Luffy, Croquemou, Garfield">                    
+                        </div>
+                        <!--Race du chat-->
+                        <div class="form__text">
+                            <label for="input__race_chat">Race de votre chat</label>
+                            <input type="text" id="input__race_chat" placeholder="Exemple: Siamois, Bengal, Maincoon">                    
+                        </div>
+                        <!--âge du chat-->
+                        <div class="form__text">
+                            <label for="input__age_chat">Âge de votre chat</label>
+                            <input type="number" id="input__age_chat" placeholder="Entrez un âge entre 1 an et 15 ans" min="1" max="15">  
+                        </div>
+                        <!--Numéro de téléphone-->
+                        <div class="form__text">
+                            <label for="input__tel">Téléphone</label>
+                            <input type="text" id="input__tel" placeholder="Entrez votre numéro de téléphone">                    
+                        </div>
+                        <!--Courriel-->
+                        <div class="form__text">
+                            <label for="input__courriel">Courriel</label>
+                            <input type="email" id="input__courriel" placeholder="Entrez votre adresse courriel" pattern=".+@example\.com" size="30" required >                    
+                        </div>
+                        <!--Sélection d'une photo du chat-->
+                        <div>
+                            <h3>Nous voulons également voir votre chat!</h3>
+                            <h4>Envoyez-nous son plus beau profil!</h4>
+                            <label for="choix_photo" id="label_photo"><p>Choisir une image</p></label>
+                            <input id="choix_photo" type="file">
+                        </div>
+                    </section>
+                    <!--Bouton pour valider ou réinitialiser-->
+                    <div class="form__bouton">
+                        <input type="submit" value="Valider" id="bouton__valide">
+                        <input type="reset" value="Réinitialiser" id="bouton__reset">                                            
+                    </div>
+                </form>
+            </div>
+        </main>
+
+
+        <footer>
+            <div id="footer__conteneur__1">
+                <!--Les partenaires-->
+                <section id="footer__image">
+                    <h4>Nos partenaires</h4>
+                    <figure>
+                        <img src="images/tim.png" width="101" height="50" alt="TIM">
+                        <img src="images/logo_college_maisonneuve.png" width="173" height="50" alt="cmaisonneuve">
+                    </figure>
+                </section>
+
+                <!--Les réseaux sociaux-->
+                <section id="footer__sociaux">
+                    <h4>Nous suivre:</h4>
+                    <figure>
+                        <img src="https://s2.svgbox.net/social.svg?ic=github&color=000000" width="32" height="32">
+                        <img src="https://s2.svgbox.net/social.svg?ic=google&color=000000" width="32" height="32">
+                        <img src="https://s2.svgbox.net/social.svg?ic=instagram&color=000000" width="32" height="32">
+                        <img src="https://s2.svgbox.net/social.svg?ic=youtube&color=000000" width="32" height="32">
+                        <img src="https://s2.svgbox.net/social.svg?ic=facebook&color=000000" width="32" height="32">
+                    </figure>
+                </section>
+
+                <!--Menu du footer-->
+                <section id="footer_menu">
+                    <nav id="nav_piedpage">
+                        <a href="">À propos</a>
+                        <a href="#accueil">Accueil</a>
+                        <a href="#competition">Compétition</a>
+                        <a href="#race_chat">Savoir sur les chats</a>
+                        <a href="#candidature">Candidature</a>
+                        <a href="">Contact</a>
+                    </nav>                    
+                </section>
+            </div>
+
+            <!--Avis de confidentialité-->
+            <div id="footer__conteneur__avis">
+                <h5>Avis de confidentialité | Privacy Notice</h5>
+            </div>
+        </footer>        
+    </div>    
+</body>
+</html>

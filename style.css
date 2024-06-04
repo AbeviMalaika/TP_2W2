@@ -1,0 +1,1022 @@
+/*-----------------------------------------------ANIMATIONS CSS-------------------------------------------------------*/
+/*Animation pour le changement d'opacité des images de l'aside "commandites"*/
+@keyframes animCommandite{
+    from{
+        opacity: 0;
+    }
+
+    25%{
+        opacity: 100%;
+    }
+
+    75%{
+        opacity: 100%;
+    }
+
+    to{
+        opacity: 0;
+    }
+}
+
+/*Animation du spritesheet pour la publicité*/
+/*L'animation pour la version mobile*/
+@keyframes animPub{
+    0%{
+        background-position: 0 0;
+    }
+
+    100%{
+        background-position: -7590px 0;
+    }
+}
+/*L'animation pour la version desktop*/
+@keyframes animPubDesktop{
+    0%{
+        background-position: 0 0;
+    }
+
+    100%{
+        background-position: -4950px 0;
+    }
+}
+/************************************************************************************************/
+
+/*Animation pour la couleur de la bordure des images de Félixa*/
+@keyframes animBordure{
+    0%{
+        border-color: var(--couleurOR);
+    }
+
+    50%{
+        border-color: var(--couleurBlancOr);
+    }
+
+    100%{
+        border-color: var(--couleurOR);
+    }
+}
+
+/*Animation pour la couleur de police du texte d'accueil*/
+@keyframes animTexteAccueil{
+    0%{
+        color: var(--couleurBlancOr);
+    }
+
+    50%{
+        color: var(--couleurOR);
+    }
+
+    100%{
+        color: var(--couleurBlancOr);
+    }    
+}
+
+
+/*---------------------------------------------VARIABLES CSS---------------------------------------------------------*/
+:root{
+    /*Variables de couleurs*/
+    --couleurBlancOr: #f8e8ca;
+    --couleurOR:#ccb589;
+    --couleurBleuClassique: #3c3967;
+    --couleurHeaderFooter: #212039;
+    --couleurBleuMoyenClair: #716d9d;    
+    --couleurBourgogne: #6b2424;     
+
+    /*Variables de polices*/
+    --policeTitre: "Spectral", serif;
+    --policeParaH2: "Cormorant Garamond", serif;
+    --policeDetail: "Roboto", sans-serif; 
+    --policeCursive: "Ephesis", cursive;
+}
+
+
+/*-----------------------------------------------ClassList-----------------------------------------------------------*/
+.styleSectionMain{
+    /*Cette classe sert à styliser les articles du main, pour donner les bordures (courbes) qu'ils ont*/
+    border-radius: 6px 70px 37px 37px;
+}
+
+
+/*--------------------------------------------MISE EN PAGE-----------------------------------------------------------*/
+/*Initialisation de la page*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    /*Pour avoir un défilement doux de la page*/
+    scroll-behavior: smooth;
+}
+
+#global{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    color: white;
+    /*La police par défaut choisit*/
+    font-family: "Playfair Display", serif;
+}
+
+
+/***********************************************************Entete/header---------------------------------------------------------*/
+header{
+    padding: 20px;
+    background-color: var(--couleurHeaderFooter);
+}
+/***********************/
+h1{
+    font-family: var(--policeTitre);
+    color: var(--couleurOR);
+    font-size: clamp(1.3rem, -1.9692rem + 20.9231vw, 3rem);
+    font-weight: 300;
+}
+
+/*LES MENUS*/
+#menu_desktop{
+    display: none;
+}
+
+#menu_mobile{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 152px;
+    transform: translateX(-101%); /*Mis à 101% car il y avait un grain de pixel de bordure qui apparaissait lorsque que le menu était fermé*/
+    transition: 0.3s ease-in-out;
+    background-color: var(--couleurBlancOr);
+    padding: 10px;
+    gap: 8px;
+    z-index: 10;
+    /*animation: anim_menu_mobile;*/
+}
+
+header a{
+    color: var(--couleurBourgogne);
+    font-family: var(--policeDetail);
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+/**___Checkbox___**/
+#maCheckbox{
+    /*On fait un display none pour que le carré avec le crochet 
+    disparaisse. On ne veut pas le voir dans le cas présent*/    
+    display: none;
+}
+
+/**__Menu burger__**/
+#label_checkbox{
+    /*On donne une position absolute pour pouvoir placer le menu burger en haut à gauche.
+    Comme il est sorti du flux normal, il est repositionné sans perturber les autres éléments 
+    ou le conteneur (ça évite d'avoir le titre déplacé et la hauteur de l'entête modifié*/
+    position: absolute; 
+    margin-top: 3px;
+    margin-left: 3px;
+    display: block;
+    width: 30px;
+    height: 26px;
+    top: 19px;
+    left: 17px;
+}
+
+/**__Trait du menu burger__**/
+.trait{
+    width: 30px;
+    height: 2px;
+    margin-bottom: 10px;
+    background-color: #f8e8ca;
+    transition: 0.2s;/*On met une transition pour un mouvement plus naturel et moins abrupte*/
+}
+
+#maCheckbox:checked ~ label .trait:nth-of-type(1){
+    transform: translateY(12px) rotate(45deg); /*On fait tourner à droite et descendre pour créer un X*/
+    transition: 0.2s; /*On met une transition pour un mouvement plus naturel et moins abrupte*/
+}
+
+#maCheckbox:checked ~ label .trait:nth-of-type(2){
+    transform: scale(0); /*On réduit la taille du 2eme trait pour qu'il disparaisse*/
+    transition: 0.2s; /*On met une transition pour un mouvement plus naturel et moins abrupte*/
+}
+
+#maCheckbox:checked ~ label .trait:nth-of-type(3){
+    transform: translateY(-12px) rotate(-45deg); /*On fait tourner à gauche et monter pour créer un X*/
+    transition: 0.2s; /*On met une transition pour un mouvement plus naturel et moins abrupte*/
+}
+
+#maCheckbox:checked ~ #menu_mobile{
+    transform: translateX(0);
+}
+
+#recherche_desktop{
+    display: none;
+}
+
+/*******Titre et logo******/
+#icone_entete{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    /*margin: 10px 10px 0 10px;*/
+}
+
+#titre_logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+#titre_logo img{
+    width: 80px;
+    height: 80px;
+}
+
+
+/***********************************************************Principale/main-------------------------------------------------------*/
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--couleurBlancOr);
+    gap: 30px;
+}
+
+main > *{
+    padding: 25px 30px 30px;  
+}
+/*******************/
+
+h2{
+    font-family: var(--policeParaH2);
+    text-transform: uppercase;
+}
+
+/************************************************************************************************Aside******/
+aside{
+    background-color: var(--couleurBlancOr);
+    display: flex;
+}
+
+aside h5{
+    color: var(--couleurBourgogne);
+    font-size: 1rem;
+}
+/*----------------------COMMANDITES------------*/
+#aside_commandite{
+    padding-top: 105px;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#aside_commandite img{
+    opacity: 0;
+    width: 20vw;
+    height: 100%;
+}
+
+/*J'utilise les delay pour donner un effet visuel d'opacité en vague*/
+#aside_commandite img:nth-of-type(1){
+    animation: animCommandite 5s infinite;
+}
+
+/*J'utilise les delay pour donner un effet visuel d'opacité en vague*/
+#aside_commandite img:nth-of-type(2){
+    animation: animCommandite 5s infinite;
+    animation-delay: 0.5s;
+}
+
+/*J'utilise les delay pour donner un effet visuel d'opacité en vague*/
+#aside_commandite img:nth-of-type(3){
+    animation: animCommandite 5s infinite;
+    animation-delay: 1s;
+}
+
+/*J'utilise les delay pour donner un effet visuel d'opacité en vague*/
+#aside_commandite img:nth-of-type(4){
+    animation: animCommandite 5s infinite;
+    animation-delay: 1.5s;
+}
+
+#defilement_commandite{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+/*----------------------PUBLICITÉS----------*/
+#aside_pub{
+    padding-top: 10px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#aside_pub h5{
+    padding-top: 10px;
+}
+
+#pub_Chat{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    align-self: center;
+    width: 230px;
+    height: 230px;
+    background-image: url(images/pubSpritesheet.png);
+    border-radius: 100px 100px 100px 100px;
+    border:  3px solid #da6625;
+}
+
+/*Class pour l'animation de la pub de chat*/
+.animationDeLaPub{
+    animation: animPub 3000ms steps(33, end) infinite;
+}
+
+#bouton_pub{
+    position: relative;
+    height: 40px;
+    bottom: -30px;
+    cursor: pointer; /*Pour que la souris devient un pointeur sur le bouton*/
+    background-color: white;
+}
+
+/***************************************************************************************Article******/
+article{
+    font-family: var(--policeParaH2);
+}
+/****Les articles ont une position relative et des décalages vers le bas pour faire un effet de chevauchement***/
+
+/*--------------------------ACCUEIL------------------------*/
+#accueil{
+    background-image: url("images/image_accueil.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    bottom: -105px;
+    z-index: 4;
+    box-shadow: 0 0 0 10px var(--couleurOR) inset;
+}
+
+#para_accueil{
+    color: var(--couleurOR);
+    padding: 95px 20px 10px;
+    position: relative;
+    z-index: 10;
+    font-size: clamp(1.6rem, 0.9558rem + 1.2869vw, 2.4rem);
+    text-align: justify;
+    background-image: linear-gradient(180deg,rgba(0,0,0,0), var(--couleurBleuClassique), #1f1d3d );
+    border-radius: 10px 10px 10px 10px;
+    animation: animTexteAccueil 5s ease-in-out infinite; 
+}
+
+/*Le dégradé sert à camoufler le haut de la section d'accueil qui est décalé*/
+#degrade{
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    background-image: linear-gradient(180deg, #1f1d3d, var(--couleurBleuClassique), rgba(0,0,0,0));
+    box-shadow: 0px 10px 0px var(--couleurOR) inset;
+    border: 10px solid var(--couleurOR) inset;
+    font-family: var(--policeCursive);
+    left: 0;
+    top: -105px;
+}
+
+#degrade p{
+    position: relative;
+    text-align: center;
+    font-size: clamp(3rem, 0.1905rem + 7.619vw, 4rem);
+    transform: translateY(62px);
+    padding: 0 20px 0 20px;
+    z-index: 12;
+}
+
+/*La partie "PLUS BEAU*/
+#degrade span{
+    text-align: center;
+    transform-origin: bottom left; 
+    font-size: clamp(2rem, -0.8095rem + 7.619vw, 3rem);
+    font-family: var(--policeParaH2);
+}
+
+/*---------SECTION GRAND GAGNANT FÉLIN ROYALE 2024--------*/
+#competition{
+    background-color: var(--couleurBleuMoyenClair);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+}
+
+#competition h2{
+    color: var(--couleurOR);
+    font-size: 2rem;
+}
+
+#competition h3{
+    font-size: 2rem;
+}
+
+#competition h4{
+    font-family: var(--policeCursive);
+    color: var(--couleurBlancOr);
+    padding-top: 20px;
+    font-size: 4rem;
+    font-weight: 200;
+}
+
+#competition p{
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+#chat_competition{
+    display: flex;
+    flex-direction: column;
+}
+
+#informations_chat{
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+}
+
+#data_complet{
+    display: flex;
+    justify-content: center;
+}
+
+#data_complet p{
+    padding: 10px;
+}
+
+#data_complet p:nth-of-type(1), #data_complet p:nth-of-type(2){
+    border-right: 2px solid white; /*Pour créer les bordures entre les informations sur le chat gagnant*/
+}
+
+#img_chat{
+    width: 80%;
+    border: 10px solid ;
+    animation: animBordure 4s linear infinite;
+}
+
+#boutonFelixa{
+    background-color: var(--couleurBlancOr);
+    cursor: pointer; /*Pour que la souris devient un pointeur sur le bouton*/
+}
+
+figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*------------------SECTION ARTICLES SUR LES CHATS-----------------*/
+#race_chat{
+    background-color: var(--couleurBleuClassique);
+    color: var(--couleurBlancOr);
+}
+
+#race_chat h3{
+    font-family: var(--policeCursive);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 3rem;
+}
+
+#race_chat p{
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+#texte_photo_angora{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+#texte_photo_angora section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#imageAngora{
+    max-width: 60%;
+    height: 100%;
+}
+
+#bouton_Angora{
+    background-color: var(--couleurBlancOr);
+    position: relative;
+    cursor: pointer; /*Pour que la souris devient un pointeur sur le bouton*/
+}
+
+
+/*------------------FORMULAIRE D'INSCRIPTION-----------------*/
+form{
+    background-color: #3f3d90;
+}
+/***********************/
+#section_formulaire{
+    display: flex;
+    flex-direction: column;
+    padding-top: 50px;
+    background-color: var(--couleurBleuMoyenClair);
+}
+
+#candidature{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-self: center;
+    padding: 15px;
+    margin-bottom: 30px;
+    background-color: white;
+    color: black;
+    outline: 1px solid var(--couleurOR);
+    outline-offset: -12px;
+    gap: 15px;
+}
+
+#candidature div{
+    display: flex;
+    flex-direction: column;
+}
+
+#candidature h2{
+    text-align: center;
+}
+
+#candidature h3{
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 200;
+}
+
+/*Le mot "star"*/
+#candidature span{
+    font-family: var(--policeCursive);
+    font-size: 3rem;
+}
+
+#candidature input{
+    padding: 2px 0 2px 0;
+}
+
+#candidature label{
+    font-size: 1.2rem;
+}
+
+#les_input{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    gap: 30px;
+}
+
+#les_input div{
+    gap: 5px;
+}
+
+#les_input input{
+    font-size: clamp(1rem, 0.1905rem + 3.0476vw, 1rem);
+    width: 100%;
+    border: 2px solid var(--couleurOR);
+    border-radius: 0 13px 0;
+    text-align: center;
+}
+
+/*Le input pour choisir un fichier*/
+#choix_photo{
+    display: none; /*Pour ne pas avoir le style par défaut qui empeche de styliser le bouton*/
+}
+
+/*J'ai substitué le bouton par défaut puis j'ai appliqué les styles que je voulais*/
+#label_photo{
+    border-radius: 0 13px 0;
+    border: 1px solid rgb(189, 144, 92);
+    color: var(--couleurBourgogne);
+    background: linear-gradient(90deg, var(--couleurOR), var(--couleurBlancOr), var(--couleurOR));
+    max-width: 200px;
+    padding: 2px 0 2px 0;
+    text-align: center;
+    font-family: var(--policeDetail);
+    cursor: pointer; /*Pour que la souris devient un pointeur sur le bouton*/
+}
+
+#label_photo p{
+    font-size: 1rem;
+}
+
+/*Les boutons pour valider ou réinitialiser*/
+.form__bouton{
+    max-width: 120px;
+    gap: 10px;
+    padding: 30px 10px 10px 10px;
+}
+
+.form__bouton input{
+    color: white;
+    background-color: var(--couleurBourgogne);
+    border: 1px solid rgb(37, 2, 4);
+    font-size: 1rem;
+    font-weight: 100;
+    border-radius: 0 13px 0;
+    text-align: center;
+    cursor: pointer; /*Pour que la souris devient un pointeur sur le bouton*/
+}
+
+/***********************************************************Pied de page/Footer---------------------------------------------------*/
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    color: brown;
+    background-color: var(--couleurHeaderFooter);
+}
+/*****************************************************/
+footer h4{
+    font-family: var(--policeDetail);
+    font-weight: normal;
+    font-size: 1.1rem;
+}
+
+#footer__conteneur__1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#footer__conteneur__1 section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0 0;
+}
+
+#footer__image figure{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#footer__image img{
+    margin-right: 10px;
+}
+
+#footer__sociaux figure{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+/*Menu du footer*/
+footer a{
+    color: var(--couleurBlancOr);
+    text-decoration: none;
+    font-family: var(--policeDetail);
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+#nav_piedpage{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+}
+
+/*Dernier élément au bas de la page*/
+#footer__conteneur__avis{
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px solid white;
+}
+
+
+
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------Adaptation desktop-----------------------------------------------------------------------------------*/
+@media(width > 800px){
+
+/****************Entete/header-------------------------*/
+    h1{
+        font-size: 3.5rem;
+    }
+
+    /*LES MENUS---*/
+    #menu_mobile{
+        display: none;
+    }
+
+    #menu_desktop{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: 7px;
+    }
+
+    #menu_desktop a{
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+    #label_checkbox{
+        display: none;
+    }    
+
+    /*ICÔNES ET RECHERCHE*/
+    #icone_entete{
+        justify-content: space-between;
+    }
+
+    /*Rendre le menu mobile invisible*/
+    #recherche_mobile{
+        display: none;
+    }
+
+    #recherche_desktop{
+        display: flex;
+        background: linear-gradient(11deg, var(--couleurOR), var(--couleurBlancOr), var(--couleurOR));
+        border: none;
+        font-size: 1.2rem;
+        border-radius: 13px 13px 0;
+        text-align: center;
+    }
+
+    #recherche_desktop input{
+        display: block;
+        border-radius: 0 13px 0 13px ;
+        text-align: center;
+        border: none;
+    }
+
+    /****************Principale/main-----------------------*/
+    main{
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: 17.5% 65% 17.5%;
+        gap: 0;
+    }
+
+    /*LES ASIDES**************************/
+    /*COMMANDITES---*/
+    #aside_commandite{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        padding-top: 20px;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    #defilement_commandite{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    #aside_commandite img{
+        width: 100%;
+        height: auto;
+    }
+
+    aside h5{
+        /*Pour que le h5 de commanditaire suive*/
+        position: sticky;
+        top: 3vh;
+    }
+
+    /*PUBLICITÉS---*/
+    #aside_pub{
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 5;
+        gap: 8vh;
+    }
+
+    #aside_pub div{
+        /*Pour que la publicité suive*/
+        position: sticky;
+        top: 10vh;
+        z-index: 6;
+    }
+
+    #aside_pub h5{
+        /*Pour que le h5 de publicité suive*/
+        position: sticky;
+        top: 4vh;   
+    }
+
+    #pub_Chat{
+        justify-content: center;
+        width: 150px;
+        height: 680px;
+        align-self: center;
+        /*Une autre image est utilisé pour qu'elle corresponde mieux au format desktop*/
+        background-image: url(images/pubDesktopSpritesheet.png);
+        border-radius: 100px 100px 100px 100px;
+    }
+
+    .animationDeLaPub{
+        /*On adapte l'animation css pour la publicité en utilisant une animation pour l'image en desktop*/
+        animation: animPubDesktop 3000ms steps(33, end) infinite;    
+    }
+
+    /*LES ARTICLES**************************/
+    /*SECTION D'ACCUEIL---*/
+    #accueil{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    
+    #degrade p{
+        font-size: clamp(4rem, 3.2857rem + 1.4286vw, 5rem);
+    }
+
+    #degrade span{
+        font-size: clamp(3rem, 2.2857rem + 1.4286vw, 4rem);
+    }
+
+    /*ARTICLE SUR LE RÉSULTAT DE LA COMPÉTITION---***/
+    #chat_competition{
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        gap: 40px;
+    }
+
+    #chat_competition p{
+        font-size: clamp(0.7rem, 0.1286rem + 1.1429vw, 1.5rem);
+    }
+
+    #caroussel_chat{
+        align-items: flex-start;
+        width: 53%;
+    }
+
+    #informations_chat{
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #img_chat{
+        width: 95%;
+    }
+
+    #competition{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        display: flex;
+        position: relative;
+        bottom: -70px;
+        z-index: 3;
+        padding-top: 60px;
+    }
+
+    /*ARTICLE SUR LA RACE DE CHAT DU JOUR (ANGORA)---*/
+    #race_chat{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        position: relative;
+        bottom: -35px;
+        z-index: 2;
+        padding-top: 60px;
+    }
+
+    #race_chat p{
+        font-size: 1.2rem;
+    }
+
+    #texte_photo_angora{
+        flex-direction: row;
+    }
+
+    #texte_photo_angora p{
+        font-size: clamp(0.7rem, 0.1286rem + 1.1429vw, 1.5rem);
+        width: 50%;
+    }
+    
+    #texte_photo_angora section{
+        width: 50%;
+    }
+
+    #imageAngora{
+        width: 100%;
+    }
+
+    /*LE FORMULAIRE DE CANDIDATURE*******************---*/
+    #candidature{
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        padding-top: 60px;
+    }
+
+    /****************Pied de page/Footer-------------------*/  
+    footer{
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+
+    footer a, footer h4{
+        font-size: 1rem;
+    }
+
+    #footer__conteneur__1{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        gap: 10px;
+    }
+
+    #footer__conteneur__1 section:nth-of-type(1){
+        display: flex;
+        align-self: center;
+        gap: 10px;
+    } 
+
+    #footer__conteneur__1 section:nth-of-type(1) figure{
+        display: flex;
+        align-self: center;
+        gap: 10px;
+    } 
+
+    #footer__conteneur__1 section:nth-of-type(2){
+        align-self: center;
+    } 
+}
+
+
+/*Les couleurs utiles pour le site web*/
+/*
+#3366cc (bleu royal moyen)
+#04039f (bleu foncé)
+#ffffff (blanc)
+#000000 (noir)
+#d3d4d7 (gris argenté)
+
+Belle palette en ligne avec bleu et vert
+#27155e	(39,21,94)
+#3f3d90	(63,61,144)
+#4c71c1	(76,113,193)
+#73a7ba	(115,167,186)
+#89e19c	(137,225,156)
+*/
+
+/*Des polices intéressantes*/
+/*
+.sedan-sc-regular {
+  font-family: "Sedan SC", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cormorant-garamond-medium {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.ephesis-regular {
+  font-family: "Ephesis", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+*/
